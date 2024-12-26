@@ -31,10 +31,11 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "build": "npm run build",
-    "start": "react-scripts start"
+    "start": "craco start",
+    "build": "react-scripts build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
