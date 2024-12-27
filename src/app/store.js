@@ -1,5 +1,5 @@
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
-import { thunk } from 'redux-thunk'; // Gunakan named import untuk `thunk`
+import thunk from 'redux-thunk'; // Gunakan default import untuk `thunk`
 import authReducer from './features/Auth/reducer';
 import cartReducer from './features/Cart/reducer';
 import productReducer from './features/Product/reducer';
