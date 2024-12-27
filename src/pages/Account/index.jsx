@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
-import { Routes, Route, useMatch } from 'react-router-dom';  
+import { Routes, Route } from 'react-router-dom';  
 import { LinkContainer } from 'react-router-bootstrap';
 import AddAddress from '../../components/AddAddress';
 import Address from '../../components/Address';
@@ -9,8 +9,6 @@ import Profile from '../../components/Profile';
 import Logout from '../../components/Logout';
 
 export default function Account() {
-  const match = useMatch('/account/*');  // Ganti useRouteMatch dengan useMatch
-
   return (
     <Container className="mt-5 p-5">
       <Card>
@@ -21,22 +19,22 @@ export default function Account() {
           <Row>
             <Col md={3}>
               <ListGroup>
-                <LinkContainer to="/account" exact>
+                <LinkContainer to="/">
                   <ListGroup.Item action>
                     Profil
                   </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer to="/account/orders" exact>
+                <LinkContainer to="/orders">
                   <ListGroup.Item action>
                     Pemesanan
                   </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer to="/account/address" exact>
+                <LinkContainer to="/address">
                   <ListGroup.Item action>
                     Alamat
                   </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer to="/account/logout" exact>
+                <LinkContainer to="/logout">
                   <ListGroup.Item action>
                     Logout
                   </ListGroup.Item>
@@ -45,11 +43,11 @@ export default function Account() {
             </Col>
             <Col md={9}>
               <Routes>
-                <Route path="/account" element={<Profile />} exact />
-                <Route path="/account/logout" element={<Logout />} exact />
-                <Route path="/account/orders" element={<Order />} exact />
-                <Route path="/account/address" element={<Address />} />
-                <Route path="/account/add-address" element={<AddAddress />} />
+                <Route path="/" element={<Profile />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/orders" element={<Order />} />
+                <Route path="/address" element={<Address />} />
+                <Route path="/add-address" element={<AddAddress />} />
               </Routes>
             </Col>
           </Row>
@@ -58,3 +56,4 @@ export default function Account() {
     </Container>
   );
 }
+

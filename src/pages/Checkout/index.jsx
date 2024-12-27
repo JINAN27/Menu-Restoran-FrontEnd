@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container, Button } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useNavigate, useMatch } from 'react-router-dom';  
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { getAddress } from '../../app/api/address';
 import { createOrder } from '../../app/api/order';
 import { clearItem } from '../../app/features/Cart/action';
@@ -12,7 +12,7 @@ import { formatRupiah, sumPrice } from '../../utils';
 const AddressData = ({ setAddressData }) => {
   const [address, setAddress] = useState([]);
   const [notSelect, setNotSelect] = useState(true);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleChange = row => {
     if (row.selectedCount > 0) {
@@ -47,7 +47,7 @@ const AddressData = ({ setAddressData }) => {
           variant="primary" 
           size="sm" 
           disabled={notSelect} 
-          onClick={() => navigate('/checkout/confirm')}  
+          onClick={() => navigate('/checkout/confirm')}
         >
           Selanjutnya
         </Button>
@@ -57,7 +57,7 @@ const AddressData = ({ setAddressData }) => {
 };
 
 const Confirmation = ({ data, onClick }) => {
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const cart = useSelector(state => state.cart);
   const confirm = [
     { label: 'Alamat', value: <div>{data.nama}<br />{data.provinsi}, {data.kabupaten}, {data.kecamatan}, {data.kelurahan}<br />({data.detail})</div> },
@@ -85,10 +85,9 @@ const Confirmation = ({ data, onClick }) => {
 };
 
 export default function Checkout() {
-  const match = useMatch('/checkout/*');  
   const [selectedAddress, setSelectedAddress] = useState({});
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleCreateOrder = async () => {
     const payload = {
@@ -99,7 +98,7 @@ export default function Checkout() {
     const { data } = await createOrder(payload);
     if (!data.error) {
       dispatch(clearItem());
-      navigate(`/invoices/${data._id}`);  
+      navigate(`/invoices/${data._id}`);
     }
   };
 
@@ -125,3 +124,4 @@ export default function Checkout() {
     </Container>
   );
 }
+
